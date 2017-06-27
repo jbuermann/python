@@ -1,8 +1,12 @@
+{% load sitetree %}
 <html>
 <head>
     <title>Buermann Presents</title>
 </head>
 <body>
+{% sitetree_menu from "main_tree" include "trunk" %}
+{% sitetree_breadcrumbs from "main_tree" %}
+
 <h1>The Worst Human Society</h1>
 
 {% block content %} {% endblock %}

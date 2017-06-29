@@ -6,16 +6,14 @@ from datetime import datetime
 # Post
 class post(models.Model):
     title = models.CharField(max_length=255)
+    alias = models.CharField(max_length=255,blank=True)
     banner = models.ImageField(upload_to='images/banners',blank=True)
     author = models.CharField(max_length=50)
     body = models.TextField(blank=True)
     timestamp = models.DateTimeField('Creation Date', default=datetime.now)
-    startDate = models.DateTimeField('Start Date', blank=True,null=True)
-    endDate = models.DateTimeField('End Date', blank=True,null=True)
     TYPE_CHOICES = (
-        ('1', 'Page'),# Included in menu
-        ('2', 'Event'),# Added to Calendar
-        ('3', 'Article'),# Listed on articles page
+        (1, 'Page'),# Included in menu
+        (2, 'Article'),# Listed on articles page
     )
     type = models.CharField(max_length=9, choices=TYPE_CHOICES, default='1')
     def __str__(self):

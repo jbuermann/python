@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
+admin.autodiscover()
+
 urlpatterns = [
-    url(r'^blog/', include('blog.urls'),name='Blog Home'),
-    url(r'^$', views.home,name='Home'),
+    url(r'^schedule/', include('schedule.urls'), name='scheduler'),
+    url(r'^blog/', include('blog.urls'), name='Blog Home'),
+    url(r'^$', views.home, name='Home'),
     url(r'^admin/', admin.site.urls, name='Admin'),
-]
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

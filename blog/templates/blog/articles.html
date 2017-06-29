@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block content %}
+{% block body %}
 <ul>
    {% for item in data %}
-  <li><a href="articles/{{ item.url }}">{{ item.title }}</a></li>
+  <li><a href="{{ item.url }}">{{ item.title }}</a></li>
   {% endfor %}
 </ul>
 

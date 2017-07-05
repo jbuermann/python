@@ -7,7 +7,7 @@ def index(request):
 
 
 def articles(request):
-    p = post.objects.filter(type=1)
+    p = post.objects.filter(type=2)
     params = [];
     for i in p:
         params.append({'title' : i.title,'url' : i.alias})
@@ -18,9 +18,9 @@ def article(request,alias):
     p = post.objects.get(alias=alias, type='2')
 
     params = {
-                'title' : p.title,
-                'author' : p.author,
-                'timestamp' : p.timestamp,
-                'body' : p.body
+                'title': p.title,
+                'author': p.author,
+                'timestamp': p.timestamp,
+                'body': p.body
             }
-    return render(request,"blog/article.html",{'data' : params})
+    return render(request, "blog/article.html", {'data' : params})
